@@ -40,5 +40,5 @@
   (apply '+ (subseq (reverse (merge-sort (get-weight-per-elf l))) 0 3)))
 
 
-(print (get-max-elf-weight (get-file "./input1.txt")))
-(print (get-top-tree-elf-weights (get-file "./input1.txt")))
+(print (get-max-elf-weight (get-file "./input.txt")))
+(print (get-top-tree-elf-weights (get-file "./input.txt")))
