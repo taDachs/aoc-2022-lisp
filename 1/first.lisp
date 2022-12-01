@@ -19,8 +19,7 @@
   (apply #'max (get-weight-per-elf l)))
 
 (defun merge-sort (l)
-  (labels (
-           (quick-merge (a b)
+  (labels ((quick-merge (a b)
                         (when (null a) (return-from quick-merge b))
                         (when (null b) (return-from quick-merge a))
                         (if (< (car a) (car b))
