@@ -5,16 +5,12 @@
           while line
           collect line)))
 
-(defun split-when (pred l &optional acc)
-  (when (null l) (return-from split-when (list (reverse acc))))
-  (if (funcall pred (car l))
-    (cons (reverse acc) (split-when pred (cdr l)))
-    (split-when pred (cdr l) (cons (car l) acc))))
-
 (defun get-weight-per-elf (l)
-  (mapcar
-    (lambda (x) (reduce '+ (mapcar #'parse-integer x)))
-    (split-when (lambda (x) (= (length x) 0)) l)))
+  (reduce (lambda (acc val) (if (= (length val) 0)
+                              (cons 0 acc)
+                              (cons (+ (first acc) (parse-integer val)) (rest acc))))
+          l
+          :initial-value '(0)))
 
 (defun part-1 (l)
   (apply #'max (get-weight-per-elf l)))

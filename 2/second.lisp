@@ -42,9 +42,8 @@
 
 (defun part-2 (l)
   (get-exp-result
-    (mapcar (lambda (x)
-              (let ((r (map-line x '(rock paper scissor) '(lose draw win))))
-                (list (first r) (get-required-move (first r) (second r)))))
+    (mapcar (lambda (x) (let ((r (map-line x '(rock paper scissor) '(lose draw win))))
+                          (list (first r) (apply #'get-required-move r))))
             l)))
 
 (format t "# PART 1 # Expected Result: ~d~%" (part-1 (get-file "./input.txt")))
